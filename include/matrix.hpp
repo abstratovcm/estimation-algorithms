@@ -43,8 +43,8 @@ public:
     }
 };
 
-#include "matrixConstructors.tpp"
-#include "matrixOperators.tpp"
-#include "matrixPrintFunctions.tpp"
+#include "../tpl/matrixConstructors.tpp"
+#include "../tpl/matrixOperators.tpp"
+#include "../tpl/matrixPrintFunctions.tpp"
 
 #endif

@@ -11,13 +11,16 @@ const T &Matrix<T>::operator()(int m, int n) const
 template <typename T>
 Matrix<T> &Matrix<T>::operator=(const Matrix<T> &other)
 {
-    if (rows == other.rows && cols == other.cols) {
-        for (int i=0; i<matrix.size(); i++) {
-            matrix[i] = other.matrix[i]; 
+    if (rows == other.rows && cols == other.cols)
+    {
+        for (int i = 0; i < matrix.size(); i++)
+        {
+            matrix[i] = other.matrix[i];
         }
     }
-    else {
-        std::cerr << "Matrix doesn't have the same size." << std::endl; 
+    else
+    {
+        std::cerr << "Matrix doesn't have the same size." << std::endl;
     }
     return *this;
 }
