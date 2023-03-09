@@ -1,13 +1,22 @@
-CC=g++
-CFLAGS=-c -Wall
+SRC_DIR=src
+INC_DIR=include
+BIN_DIR=bin
 
-all: matrix
+SRCS=$(wildcard $(SRC_DIR)/*.cpp)
+OBJS=$(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.o,$(SRCS))
+DEPS=$(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.d,$(SRCS))
 
-matrix: Debug.o matrix.o
-	$(CC) Debug.o -o matrix
+EXE=$(BIN_DIR)/Debug
 
-Debug.o: Debug.cpp
-	$(CC) $(CFLAGS) Debug.cpp
+all: $(EXE)
+
+$(EXE): $(OBJS)
+	g++ $^ -o $@
+
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
+	g++ -I$(INC_DIR) -MMD -MP -c $< -o $@
 
 clean:
-	rm -rf *o matrix
+	rm -f $(OBJS) $(DEPS) $(EXE)
+
+-include $(DEPS)
